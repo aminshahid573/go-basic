@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Go Learning Notes</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css"
+    />
+    <link rel="stylesheet" href="notes.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <h2>📚 Go Course</h2>
+      <nav>
+        <ul>
+          <li><a href="#hello-world">Hello World</a></li>
+          <li><a href="#simple-values">Simple Values</a></li>
+          <li><a href="#variables">Variables</a></li>
+          <li><a href="#constants">Constants</a></li>
+          <li><a href="#for-loops">For Loops</a></li>
+          <li><a href="#if-else">If/Else</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <div class="main-content">
+      <header>
+        <h1>🚀 Go Learning Course</h1>
+        <p>
+          Recall and explore your Go learning journey. Each topic is
+          interactive, detailed, and easy to revisit!
+        </p>
+      </header>
+      <main>
+        <!-- 1. Hello World -->
+        <section
+          id="hello-world"
+          class="topic-card animate__animated animate__fadeIn"
+        >
+          <h2>1. Hello World</h2>
+          <div class="note-box">
+            <b>Purpose:</b> Your first Go program! This prints a message to the
+            console and introduces the <code>main</code> function and
+            <code>fmt</code> package.
+          </div>
+          <pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World!")
+}
+</code></pre>
+          <div class="pro-tip">
+            💡 <b>Pro Tip:</b> Every Go program starts with
+            <code>package main</code> and a <code>main()</code> function.
+          </div>
+        </section>
+
+        <!-- 2. Simple Values -->
+        <section
+          id="simple-values"
+          class="topic-card animate__animated animate__fadeIn"
+        >
+          <h2>2. Simple Values</h2>
+          <div class="note-box">
+            <b>Types covered:</b> Integer, String, Boolean, Float. <br />
+            <span>Go is statically typed, so each value has a type.</span>
+          </div>
+          <pre><code class="language-go">//integer
+fmt.Println(1)
+fmt.Println(1 + 1)
+
+//string
+fmt.Println("Hello, World!")
+
+//bool
+fmt.Println(true)
+fmt.Println(false)
+
+//floats
+fmt.Println(10.5)
+fmt.Println(7.0 / 2.3)
+</code></pre>
+          <div class="pro-tip">
+            💡 <b>Pro Tip:</b> Use <code>//</code> for single-line comments to
+            explain your code.
+          </div>
+        </section>
+
+        <!-- 3. Variables -->
+        <section
+          id="variables"
+          class="topic-card animate__animated animate__fadeIn"
+        >
+          <h2>3. Variables</h2>
+          <div class="note-box">
+            <b>Ways to declare:</b> <code>var</code> (with or without type),
+            shorthand <code>:=</code>, and uninitialized variables.<br />
+            <span
+              >Variables must be declared before use. Types can be
+              inferred.</span
+            >
+          </div>
+          <pre><code class="language-go">var name string = "Shahid"
+var name2 = "Amin" // type inferred
+var isAdult bool = true
+var age int = 30
+var height float64 = 5.9
+var country string // defaults to ""
+city := "Biratnagar" // shorthand
+</code></pre>
+          <div class="pro-tip">
+            💡 <b>Pro Tip:</b> Use <code>:=</code> for quick variable
+            declaration inside functions.
+          </div>
+        </section>
+
+        <!-- 4. Constants -->
+        <section
+          id="constants"
+          class="topic-card animate__animated animate__fadeIn"
+        >
+          <h2>4. Constants</h2>
+          <div class="note-box">
+            <b>Constants</b> are immutable values declared with
+            <code>const</code>. They cannot be changed after assignment.
+          </div>
+          <pre><code class="language-go">const age = 30
+const name string = "golang"
+// name = "javascript" // error: cannot reassign constant
+const (
+    port = 5000
+    host = "localhost"
+)
+</code></pre>
+          <div class="pro-tip">
+            💡 <b>Pro Tip:</b> Use constants for values that never change, like
+            configuration or magic numbers.
+          </div>
+        </section>
+
+        <!-- 5. For Loops -->
+        <section
+          id="for-loops"
+          class="topic-card animate__animated animate__fadeIn"
+        >
+          <h2>5. For Loops</h2>
+          <div class="note-box">
+            <b>Go's only loop:</b> <code>for</code> is the only looping
+            construct. It can be used in several ways:
+          </div>
+          <div class="sub-cards">
+            <div class="sub-card animate__animated animate__fadeInUp">
+              <h3>While-style For</h3>
+              <pre><code class="language-go">i := 1
+for i <= 3 {
+    fmt.Println(i)
+    i++
+}</code></pre>
+              <div class="pro-tip">
+                Use this for loops with unknown iteration count.
+              </div>
+            </div>
+            <div
+              class="sub-card animate__animated animate__fadeInUp animate__delay-1s"
+            >
+              <h3>Classic For</h3>
+              <pre><code class="language-go">for j := 0; j < 3; j++ {
+    fmt.Println(j)
+}</code></pre>
+              <div class="pro-tip">
+                Classic C-style for loop, good for counting.
+              </div>
+            </div>
+            <div
+              class="sub-card animate__animated animate__fadeInUp animate__delay-2s"
+            >
+              <h3>Range Loop</h3>
+              <pre><code class="language-go">for i := range 3 {
+    fmt.Println(i)
+}</code></pre>
+              <div class="pro-tip">
+                Use <code>range</code> to iterate over arrays, slices, maps, or
+                channels.
+              </div>
+            </div>
+            <div
+              class="sub-card animate__animated animate__fadeInUp animate__delay-3s"
+            >
+              <h3>Infinite Loop</h3>
+              <pre><code class="language-go">for {
+    fmt.Println("Infinite Loop")
+}</code></pre>
+              <div class="pro-tip">
+                Break out of infinite loops with <code>break</code> or
+                <code>return</code>.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. If/Else -->
+        <section
+          id="if-else"
+          class="topic-card animate__animated animate__fadeIn"
+        >
+          <h2>6. If/Else</h2>
+          <div class="note-box">
+            <b>Conditional logic:</b> Go supports several forms of
+            <code>if</code> and <code>else</code> for decision making.
+          </div>
+          <div class="sub-cards">
+            <div class="sub-card animate__animated animate__fadeInUp">
+              <h3>Simple If</h3>
+              <pre><code class="language-go">age := 20
+if age >= 18 {
+    fmt.Println("You are an adult.")
+}</code></pre>
+              <div class="pro-tip">Use for single, clear conditions.</div>
+            </div>
+            <div
+              class="sub-card animate__animated animate__fadeInUp animate__delay-1s"
+            >
+              <h3>If-Else</h3>
+              <pre><code class="language-go">age := 16
+if age >= 18 {
+    fmt.Println("You are an adult.")
+} else {
+    fmt.Println("You are not an adult.")
+}</code></pre>
+              <div class="pro-tip">
+                Provides an alternative path if the condition is false.
+              </div>
+            </div>
+            <div
+              class="sub-card animate__animated animate__fadeInUp animate__delay-2s"
+            >
+              <h3>If-Else If-Else</h3>
+              <pre><code class="language-go">percentage := 40
+if percentage > 80 {
+    fmt.Println("A")
+} else if percentage > 65 {
+    fmt.Println("B+")
+} else {
+    fmt.Println("Fail")
+}</code></pre>
+              <div class="pro-tip">
+                Chain multiple conditions for complex logic.
+              </div>
+            </div>
+            <div
+              class="sub-card animate__animated animate__fadeInUp animate__delay-3s"
+            >
+              <h3>Inline Variable Declaration</h3>
+              <pre><code class="language-go">if age := 15; age >= 18 {
+    fmt.Println("You are an adult.")
+} else {
+    fmt.Println("You are not an adult.")
+}</code></pre>
+              <div class="pro-tip">
+                Declare a variable just for the if/else scope.
+              </div>
+            </div>
+            <div
+              class="sub-card animate__animated animate__fadeInUp animate__delay-4s"
+            >
+              <h3>Logical Operators</h3>
+              <pre><code class="language-go">role := "admin"
+hasPermission := true
+if role == "admin" || hasPermission {
+    fmt.Println("User has admin permission")
+}</code></pre>
+              <div class="pro-tip">
+                Use <code>&&</code> (and), <code>||</code> (or) to combine
+                conditions.
+              </div>
+            </div>
+            <div
+              class="sub-card animate__animated animate__fadeInUp animate__delay-5s"
+            >
+              <h3>No Ternary Operator</h3>
+              <pre><code class="language-go">// Go does not support: result := condition ? a : b
+// Use:
+if condition {
+    result = a
+} else {
+    result = b
+}</code></pre>
+              <div class="pro-tip">
+                Go does <b>not</b> have a ternary operator. Use if/else instead.
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-go.min.js"></script>
+  </body>
+</html>
