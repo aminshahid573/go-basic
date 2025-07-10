@@ -25,15 +25,16 @@
         <h2>Go Guide</h2>
       </div>
       <nav>
-        <ul>
-          <li><a href="#hello-world">1. Hello World</a></li>
-          <li><a href="#simple-values">2. Simple Values</a></li>
-          <li><a href="#variables">3. Variables</a></li>
-          <li><a href="#constants">4. Constants</a></li>
-          <li><a href="#for-loops">5. For Loops</a></li>
-          <li><a href="#if-else">6. If/Else</a></li>
-          <li><a href="#switch">7. Switch</a></li>
-          <li><a href="#arrays">8. Arrays</a></li>
+        <ul style="overflow-y:auto;max-height:calc(100vh - 120px);">
+          <li><a href="#hello-world" class="icon-link">Hello World</a></li>
+          <li><a href="#simple-values" class="icon-link">Simple Values</a></li>
+          <li><a href="#variables" class="icon-link">Variables</a></li>
+          <li><a href="#constants" class="icon-link">Constants</a></li>
+          <li><a href="#for-loops" class="icon-link">For Loops</a></li>
+          <li><a href="#if-else" class="icon-link">If/Else</a></li>
+          <li><a href="#switch" class="icon-link">Switch</a></li>
+          <li><a href="#arrays" class="icon-link">Arrays</a></li>
+          <li><a href="#slices" class="icon-link">Slices</a></li>
         </ul>
       </nav>
     </aside>
@@ -55,98 +56,563 @@
         >
           <h2>1. Hello World</h2>
           <div class="section-content">
-            <div class="explanation">
-              <h3>What is a Go Program?</h3>
-              <p>Every Go program consists of:</p>
-              <ul>
-                <li><code>package main</code> - Declares the package name</li>
-                <li>
-                  <code>import</code> statements - Include external packages
-                </li>
-                <li><code>func main()</code> - Entry point of the program</li>
-              </ul>
-            </div>
-
             <div class="code-example">
               <h4>Your First Go Program</h4>
-              <pre><code class="language-go">package main
+              <pre><code class="language-go" id="code-hello-world">package main
 
 import "fmt"
 
-func main() {
+func main(){
     fmt.Println("Hello, World!")
 }</code></pre>
-              <button class="run-btn" onclick="runCode('hello-world')">
+              <button class="run-btn" onclick="runGoCode(document.getElementById('code-hello-world').textContent, 'output-hello-world')">
                 ▶ Run Code
               </button>
+              <div class="output" id="output-hello-world" style="background:#222;color:#fff;padding:8px;margin-top:8px;min-height:24px;"></div>
             </div>
-
-            <div class="practice">
-              <h4>🏋️‍♂️ Practice Exercise</h4>
-              <p>Try modifying the program to print your name instead!</p>
-              <textarea
-                class="code-editor"
-                placeholder="Write your code here..."
-              ></textarea>
-              <button class="check-btn">Check Answer</button>
+            <button class="explain-btn" onclick="this.nextElementSibling.classList.toggle('show')">💡 Show Explanation</button>
+            <div class="explanation animate__animated animate__fadeIn" style="display:none;">
+              <ul>
+                <li><code>package main</code>: Declares the package name. Every Go program starts with a package declaration. <b>main</b> is special: it tells Go this is an executable program, not a shared library.</li>
+                <li><code>import "fmt"</code>: Imports the <b>fmt</b> package, which contains functions for formatted I/O (input/output), like printing to the console.</li>
+                <li><code>func main()</code>: The entry point of every Go program. The <b>main</b> function is where execution starts.</li>
+                <li><code>fmt.Println("Hello, World!")</code>: Calls the <b>Println</b> function from the <b>fmt</b> package to print text to the console, followed by a newline.</li>
+                <li><b>Note:</b> Go uses curly braces <code>{}</code> for code blocks, and all statements end with a newline (not a semicolon, except in rare cases).</li>
+                <li><b>Extra:</b> Try changing the text inside <code>Println</code> to print your name or any message!</li>
+                <li><b>Did you know?</b> Go files must be saved with a <code>.go</code> extension, and the <b>main</b> function is required for standalone programs.</li>
+              </ul>
+            </div>
+            <div class="quiz" style="margin-top:16px;">
+              <b>Quiz:</b> What happens if you remove the <code>main</code> function from this program?
+              <details>
+                <summary>Show Answer</summary>
+                <div>If you remove <code>main</code>, the program will compile but not run, because Go looks for <code>func main()</code> as the entry point.</div>
+              </details>
             </div>
           </div>
         </section>
 
         <!-- 2. Simple Values -->
-        <section
-          id="simple-values"
-          class="topic-card animate__animated animate__fadeIn"
-        >
+        <section id="simple-values" class="topic-card animate__animated animate__fadeIn">
           <h2>2. Simple Values</h2>
           <div class="section-content">
-            <div class="explanation">
-              <h3>Basic Data Types in Go</h3>
-              <p>Go provides several basic data types:</p>
-              <ul>
-                <li>
-                  <strong>Integers:</strong> int, int8, int16, int32, int64
-                </li>
-                <li><strong>Floating-point:</strong> float32, float64</li>
-                <li><strong>Strings:</strong> UTF-8 encoded text</li>
-                <li><strong>Booleans:</strong> true or false</li>
-              </ul>
-            </div>
-
             <div class="code-example">
               <h4>Working with Different Types</h4>
-              <pre><code class="language-go">package main
+              <pre><code class="language-go" id="code-simple-values">package main
 
 import "fmt"
 
 func main() {
-    // Numbers
-    fmt.Println(42)           // Integer
-    fmt.Println(3.14)         // Float
-    
-    // Strings
-    fmt.Println("Go is fun!") // String
-    
-    // Booleans
-    fmt.Println(true)         // Boolean
-    
-    // Basic arithmetic
-    fmt.Println(10 + 5)       // Addition
-    fmt.Println(10 * 5)       // Multiplication
-}</code></pre>
-              <button class="run-btn" onclick="runCode('simple-values')">
-                ▶ Run Code
-              </button>
-            </div>
+    //integer
+    fmt.Println(1)
+    fmt.Println(1 + 1)
 
-            <div class="interactive-demo">
-              <h4>🎮 Interactive Demo</h4>
-              <div class="type-explorer">
-                <button class="demo-btn" data-type="int">Try Integer</button>
-                <button class="demo-btn" data-type="float">Try Float</button>
-                <button class="demo-btn" data-type="string">Try String</button>
-                <button class="demo-btn" data-type="bool">Try Boolean</button>
+    //string
+    fmt.Println("Hello, World!")
+
+    //bool
+    fmt.Println(true)
+    fmt.Println(false)
+
+    //floats
+    fmt.Println(10.5)
+    fmt.Println(7.0 / 2.3)
+}
+</code></pre>
+              <button class="run-btn" onclick="runGoCode(document.getElementById('code-simple-values').textContent, 'output-simple-values')">▶ Run Code</button>
+              <div class="output" id="output-simple-values" style="background:#222;color:#fff;padding:8px;margin-top:8px;min-height:24px;"></div>
+            </div>
+            <button class="explain-btn" onclick="this.nextElementSibling.classList.toggle('show')">💡 Show Explanation</button>
+            <div class="explanation animate__animated animate__fadeIn" style="display:none;">
+              <ul>
+                <li><b>Integers:</b> <code>fmt.Println(1)</code> prints an integer. Go supports various integer types: <code>int</code>, <code>int8</code>, <code>int16</code>, <code>int32</code>, <code>int64</code>.</li>
+                <li><b>Arithmetic:</b> <code>fmt.Println(1 + 1)</code> shows addition. Go supports all basic arithmetic operations.</li>
+                <li><b>Strings:</b> <code>fmt.Println("Hello, World!")</code> prints a string. Strings in Go are UTF-8 encoded.</li>
+                <li><b>Booleans:</b> <code>fmt.Println(true)</code> and <code>fmt.Println(false)</code> print boolean values.</li>
+                <li><b>Floats:</b> <code>fmt.Println(10.5)</code> and <code>fmt.Println(7.0 / 2.3)</code> print floating-point numbers. Go has <code>float32</code> and <code>float64</code>.</li>
+                <li><b>Extra:</b> Try changing the numbers or types to see what happens. What if you try <code>fmt.Println("3" + "4")</code>?</li>
+                <li><b>Did you know?</b> Go is statically typed, so you can't mix types in operations (e.g., <code>1 + "1"</code> is not allowed).</li>
+              </ul>
+            </div>
+            <div class="quiz" style="margin-top:16px;">
+              <b>Quiz:</b> What happens if you try to add a string and an integer in Go?
+              <details>
+                <summary>Show Answer</summary>
+                <div>Go will give a compile-time error: you can't add different types directly.</div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Variables -->
+        <section id="variables" class="topic-card animate__animated animate__fadeIn">
+          <h2>3. Variables</h2>
+          <div class="section-content">
+            <div class="code-example">
+              <h4>Declaring and Using Variables</h4>
+              <pre><code class="language-go" id="code-variables">package main
+
+import "fmt"
+
+func main() {
+    // String
+    var name string = "Shahid"
+    var name2 = "Amin" // this is also valid
+    fmt.Println(name, name2)
+
+    //boolean
+    var isAdult bool = true
+    fmt.Println(isAdult)
+
+    //integer
+    var age int = 30
+    fmt.Println(age)
+
+    //float
+    var height float64 = 5.9
+    fmt.Println(height)
+
+    //variable with no value
+    var country string
+    fmt.Println(country)
+
+    //Shorthand declaration
+    //best for declaring variable and assign value immediately
+    city := "Biratnagar"
+    fmt.Println(city)
+}
+</code></pre>
+              <button class="run-btn" onclick="runGoCode(document.getElementById('code-variables').textContent, 'output-variables')">▶ Run Code</button>
+              <div class="output" id="output-variables" style="background:#222;color:#fff;padding:8px;margin-top:8px;min-height:24px;"></div>
+            </div>
+            <button class="explain-btn" onclick="this.nextElementSibling.classList.toggle('show')">💡 Show Explanation</button>
+            <div class="explanation animate__animated animate__fadeIn" style="display:none;">
+              <ul>
+                <li><b>var name string = "Shahid"</b>: Declares a string variable with an explicit type and value.</li>
+                <li><b>var name2 = "Amin"</b>: Type inference lets Go figure out the type from the value.</li>
+                <li><b>var isAdult bool = true</b>: Boolean variable.</li>
+                <li><b>var age int = 30</b>: Integer variable.</li>
+                <li><b>var height float64 = 5.9</b>: Floating-point variable.</li>
+                <li><b>var country string</b>: Declared but not initialized, so its value is the zero value for strings: "" (empty string).</li>
+                <li><b>city := "Biratnagar"</b>: Short variable declaration, only allowed inside functions.</li>
+                <li><b>Extra:</b> Try declaring variables of other types, or without initializing them. What value do they get?</li>
+                <li><b>Did you know?</b> All variables in Go have a zero value if not initialized (e.g., 0 for int, false for bool, "" for string).</li>
+              </ul>
+            </div>
+            <div class="quiz" style="margin-top:16px;">
+              <b>Quiz:</b> What is the zero value of a boolean variable in Go?
+              <details>
+                <summary>Show Answer</summary>
+                <div>The zero value for a boolean is <code>false</code>.</div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. Constants -->
+        <section id="constants" class="topic-card animate__animated animate__fadeIn">
+          <h2>4. Constants</h2>
+          <div class="section-content">
+            <div class="code-example">
+              <h4>Declaring Constants</h4>
+              <pre><code class="language-go" id="code-constants">package main
+
+import "fmt"
+
+//shorthand syntax wont work in global
+const age = 30
+
+func main() {
+    const name string = "golang"
+
+    // name = "javascript" // This will cause an error because constants cannot be reassigned
+
+    fmt.Println("Name:", name)
+    fmt.Println("Age:", age)
+
+    // Constants can be declared in a group
+    const (
+        port = 5000
+        host = "localhost"
+    )
+
+    fmt.Println(port, host)
+}
+</code></pre>
+              <button class="run-btn" onclick="runGoCode(document.getElementById('code-constants').textContent, 'output-constants')">▶ Run Code</button>
+              <div class="output" id="output-constants" style="background:#222;color:#fff;padding:8px;margin-top:8px;min-height:24px;"></div>
+            </div>
+            <button class="explain-btn" onclick="this.nextElementSibling.classList.toggle('show')">💡 Show Explanation</button>
+            <div class="explanation animate__animated animate__fadeIn" style="display:none;">
+              <ul>
+                <li><b>const age = 30</b>: Declares a constant at the package level. Constants cannot be changed after declaration.</li>
+                <li><b>const name string = "golang"</b>: Declares a string constant inside <code>main</code>.</li>
+                <li><b>name = "javascript"</b>: This line is commented out because constants cannot be reassigned.</li>
+                <li><b>const ( ... )</b>: Declares multiple constants in a group.</li>
+                <li><b>Extra:</b> Try changing a constant's value and see what error you get.</li>
+                <li><b>Did you know?</b> Constants can only be numbers, strings, or booleans (not slices, maps, etc.).</li>
+              </ul>
+            </div>
+            <div class="quiz" style="margin-top:16px;">
+              <b>Quiz:</b> What happens if you try to assign a new value to a constant in Go?
+              <details>
+                <summary>Show Answer</summary>
+                <div>Go will give a compile-time error: constants cannot be reassigned.</div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. For Loops -->
+        <section id="for-loops" class="topic-card animate__animated animate__fadeIn">
+          <h2>5. For Loops</h2>
+          <div class="section-content">
+            <div class="code-example">
+              <h4>Looping in Go</h4>
+              <pre><code class="language-go" id="code-for-loops">package main
+
+import "fmt"
+
+//for -> only contruct in go looping
+func main() {
+    //while loop
+    i := 1
+    for i <= 3 {
+        fmt.Println(i)
+        i++
+    }
+
+    //infinite loop
+    // for {
+    //     fmt.Println("Infinite Loop")
+    // }
+
+    //classic for loop
+    // also can use continue and break
+    for j := 0; j < 3; j++ {
+        fmt.Println(j)
+    }
+
+    // range loop
+    for i := range 3 {
+        fmt.Println(i)
+    }
+}
+</code></pre>
+              <button class="run-btn" onclick="runGoCode(document.getElementById('code-for-loops').textContent, 'output-for-loops')">▶ Run Code</button>
+              <div class="output" id="output-for-loops" style="background:#222;color:#fff;padding:8px;margin-top:8px;min-height:24px;"></div>
+            </div>
+            <button class="explain-btn" onclick="this.nextElementSibling.classList.toggle('show')">💡 Show Explanation</button>
+            <div class="explanation animate__animated animate__fadeIn" style="display:none;">
+              <ul>
+                <li><b>for i <= 3</b>: Go's <code>for</code> loop can act like a <b>while</b> loop.</li>
+                <li><b>for { ... }</b>: Infinite loop (commented out here).</li>
+                <li><b>for j := 0; j < 3; j++</b>: Classic C-style for loop.</li>
+                <li><b>continue</b> and <b>break</b> can be used in loops (not shown here, but try adding them!).</li>
+                <li><b>for i := range 3</b>: Loops from 0 to 2 (Go 1.22+ feature!).</li>
+                <li><b>Extra:</b> Try uncommenting the infinite loop (but be careful!).</li>
+                <li><b>Did you know?</b> Go only has one loop keyword: <code>for</code>. There is no <code>while</code> or <code>do-while</code>.</li>
+              </ul>
+            </div>
+            <div class="quiz" style="margin-top:16px;">
+              <b>Quiz:</b> What happens if you forget to increment <code>i</code> in the first loop?
+              <details>
+                <summary>Show Answer</summary>
+                <div>The loop will run forever (infinite loop) because <code>i</code> never changes.</div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. If/Else -->
+        <section id="if-else" class="topic-card animate__animated animate__fadeIn">
+          <h2>6. If/Else</h2>
+          <div class="section-content">
+            <div class="code-example">
+              <h4>Conditional Logic</h4>
+              <pre><code class="language-go" id="code-if-else">package main
+
+import "fmt"
+
+func main() {
+    // age := 16
+
+    // if age >= 18 {
+    //     fmt.Println("You are an adult.")
+    // } else {
+    //     fmt.Println("You are not an adult.")
+    // }
+
+    percentage := 40
+
+    if percentage > 65 {
+        fmt.Println("B+")
+    } else if percentage > 80 {
+        fmt.Println("A")
+    } else if percentage <= 65 {
+        fmt.Println("Fail")
+    } else {
+        fmt.Println("A+")
+    }
+
+    var role = "admin"
+    var hasPermission = true
+
+    if role == "admin" || hasPermission {
+        fmt.Println("User has admin permission")
+    }
+
+    //we can declare variable in if statement
+    if age := 15; age >= 18 {
+        fmt.Println("You are an adult.")
+    } else {
+        fmt.Println("You are not an adult.")
+    }
+
+    //go doesnot have ternary operator, you will have to use normal if else
+}
+</code></pre>
+              <button class="run-btn" onclick="runGoCode(document.getElementById('code-if-else').textContent, 'output-if-else')">▶ Run Code</button>
+              <div class="output" id="output-if-else" style="background:#222;color:#fff;padding:8px;margin-top:8px;min-height:24px;"></div>
+            </div>
+            <button class="explain-btn" onclick="this.nextElementSibling.classList.toggle('show')">💡 Show Explanation</button>
+            <div class="explanation animate__animated animate__fadeIn" style="display:none;">
+              <ul>
+                <li><b>if percentage > 65</b>: Standard if/else if/else chain.</li>
+                <li><b>role == "admin" || hasPermission</b>: Logical OR, checks if either condition is true.</li>
+                <li><b>if age := 15; age >= 18</b>: You can declare a variable just for the if statement.</li>
+                <li><b>No ternary operator:</b> Go does not have <code>condition ? a : b</code>; use if/else instead.</li>
+                <li><b>Extra:</b> Try changing the values and see what gets printed.</li>
+                <li><b>Did you know?</b> All conditions in Go must be boolean (no implicit conversion from int, etc.).</li>
+              </ul>
+            </div>
+            <div class="quiz" style="margin-top:16px;">
+              <b>Quiz:</b> Can you use a ternary operator in Go?
+              <details>
+                <summary>Show Answer</summary>
+                <div>No, Go does not have a ternary operator. Use if/else instead.</div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. Switch -->
+        <section id="switch" class="topic-card animate__animated animate__fadeIn">
+          <h2>7. Switch</h2>
+          <div class="section-content">
+            <div class="code-example">
+              <h4>Switch Statements</h4>
+              <pre><code class="language-go" id="code-switch">package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func main() {
+    //simple switch
+    i := 5
+
+    //break keyword is not necessary
+    switch i {
+    case 1:
+        fmt.Println("one")
+    case 2:
+        fmt.Println("two")
+    case 3:
+        fmt.Println("three")
+    default: //optional
+        fmt.Println("other")
+    }
+
+    //multiple condition switch
+    switch time.Now().Weekday() {
+    case time.Saturday, time.Sunday:
+        fmt.Println("It's the weekend!")
+    default:
+        fmt.Println("It's a weekday.")
+    }
+
+    //type switch
+    // interface{} means any type
+    whoAmI := func(i interface{}) {
+        switch t := i.(type) { //we can also write `switch i.(type)` if we dont need to store the type
+        case int:
+            fmt.Println("its an integer")
+        case string:
+            fmt.Println("its a string")
+        case bool:
+            fmt.Println("its a boolean")
+        default:
+            fmt.Printf("other type : %T", t)
+        }
+    }
+
+    whoAmI(42.21)
+}
+</code></pre>
+              <button class="run-btn" onclick="runGoCode(document.getElementById('code-switch').textContent, 'output-switch')">▶ Run Code</button>
+              <div class="output" id="output-switch" style="background:#222;color:#fff;padding:8px;margin-top:8px;min-height:24px;"></div>
+            </div>
+            <button class="explain-btn" onclick="this.nextElementSibling.classList.toggle('show')">💡 Show Explanation</button>
+            <div class="explanation animate__animated animate__fadeIn" style="display:none;">
+              <ul>
+                <li><b>switch i</b>: Switches on the value of <code>i</code>. No <code>break</code> needed; Go breaks automatically.</li>
+                <li><b>default</b>: Optional, runs if no case matches.</li>
+                <li><b>switch time.Now().Weekday()</b>: Switch on the current day of the week. Multiple values per case allowed.</li>
+                <li><b>Type switch:</b> <code>switch t := i.(type)</code> checks the type of <code>i</code> (useful for interfaces).</li>
+                <li><b>Extra:</b> Try adding more cases or switching on different types.</li>
+                <li><b>Did you know?</b> Go's switch is more flexible than in C/Java: you can switch on any type, not just integers.</li>
+              </ul>
+            </div>
+            <div class="quiz" style="margin-top:16px;">
+              <b>Quiz:</b> What happens if no <code>case</code> matches and there is no <code>default</code>?
+              <details>
+                <summary>Show Answer</summary>
+                <div>Nothing happens; the switch statement is skipped.</div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. Arrays -->
+        <section id="arrays" class="topic-card animate__animated animate__fadeIn">
+          <h2>8. Arrays</h2>
+          <div class="section-content">
+            <div class="code-example">
+              <h4>Arrays in Go</h4>
+              <pre><code class="language-go" id="code-arrays">package main
+
+import "fmt"
+
+func main() {
+    //array is fixed size collection of elements of the same type
+    // memory optimization
+    // very fast to access
+    var nums [4]int
+
+    fmt.Println(len(nums)) // Length of the array
+
+    nums[0] = 1
+
+    fmt.Println(nums[0])
+    fmt.Println(nums)
+
+    var name [3]string
+    name[0] = "John"
+    name[1] = "Doe"
+    name[2] = "Smith"
+
+    fmt.Println(name)
+
+    //another way to declare and initialize an array
+    colors := [3]string{"Red", "Green", "Blue"}
+    fmt.Println(colors)
+
+    // Multidimensional array
+    multiDimension := [2][2]int{{3, 4}, {5, 6}}
+    fmt.Println(multiDimension)
+}
+</code></pre>
+              <button class="run-btn" onclick="runGoCode(document.getElementById('code-arrays').textContent, 'output-arrays')">▶ Run Code</button>
+              <div class="output" id="output-arrays" style="background:#222;color:#fff;padding:8px;margin-top:8px;min-height:24px;"></div>
+            </div>
+            <button class="explain-btn" onclick="this.nextElementSibling.classList.toggle('show')">💡 Show Explanation</button>
+            <div class="explanation animate__animated animate__fadeIn" style="display:none;">
+              <ul>
+                <li><b>var nums [4]int</b>: Declares an array of 4 integers. Arrays are fixed size.</li>
+                <li><b>len(nums)</b>: Returns the length of the array.</li>
+                <li><b>nums[0] = 1</b>: Assigns a value to the first element.</li>
+                <li><b>var name [3]string</b>: Array of 3 strings.</li>
+                <li><b>colors := [3]string{"Red", "Green", "Blue"}</b>: Declare and initialize an array in one line.</li>
+                <li><b>multiDimension := [2][2]int{{3, 4}, {5, 6}}</b>: Multidimensional array.</li>
+                <li><b>Extra:</b> Try changing the size or type of the array.</li>
+                <li><b>Did you know?</b> Arrays are value types in Go: assigning one array to another copies all elements.</li>
+              </ul>
+            </div>
+            <div class="quiz" style="margin-top:16px;">
+              <b>Quiz:</b> What happens if you try to access an index outside the array's bounds?
+              <details>
+                <summary>Show Answer</summary>
+                <div>Go will panic at runtime with an "index out of range" error.</div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. Slices -->
+        <section id="slices" class="topic-card animate__animated animate__fadeIn">
+          <h2>9. Slices</h2>
+          <div class="section-content tile-layout">
+            <div class="tile">
+              <h4>What is a Slice?</h4>
+              <pre><code class="language-go">var nums []int // nil slice (no underlying array yet)</code></pre>
+              <div class="tile-explanation">
+                <b>Slice</b> is a dynamic, flexible view into an array. Unlike arrays, slices can grow and shrink.
+                <br>Uninitialized slices are <code>nil</code>.
               </div>
+            </div>
+            <div class="tile">
+              <h4>Creating Slices</h4>
+              <pre><code class="language-go">nums := make([]int, 2) // [0 0]</code></pre>
+              <div class="tile-explanation">
+                Use <code>make</code> to create a slice with a given length (and optional capacity).<br>
+                <b>Best practice:</b> Use <code>make([]T, 0, cap)</code> if you know the expected size.
+              </div>
+            </div>
+            <div class="tile">
+              <h4>Appending Elements</h4>
+              <pre><code class="language-go">nums = append(nums, 42)</code></pre>
+              <div class="tile-explanation">
+                <code>append</code> adds elements to a slice. If the slice is at capacity, Go allocates a new underlying array.
+              </div>
+            </div>
+            <div class="tile">
+              <h4>Slice Length & Capacity</h4>
+              <pre><code class="language-go">len(nums) // number of elements
+cap(nums) // capacity before reallocation</code></pre>
+              <div class="tile-explanation">
+                <code>len</code> returns the number of elements. <code>cap</code> returns the capacity (max before reallocation).
+              </div>
+            </div>
+            <div class="tile">
+              <h4>Copying Slices</h4>
+              <pre><code class="language-go">copy(dst, src)</code></pre>
+              <div class="tile-explanation">
+                <code>copy</code> copies elements from <code>src</code> to <code>dst</code>. Both must be slices of the same type.
+              </div>
+            </div>
+            <div class="tile">
+              <h4>Slicing Syntax</h4>
+              <pre><code class="language-go">nums[1:3] // elements 1 and 2 (excludes 3)</code></pre>
+              <div class="tile-explanation">
+                Slicing returns a new slice referencing the same array. <br>
+                <b>nums[:n]</b> is from start to n-1, <b>nums[m:]</b> is from m to end.
+              </div>
+            </div>
+            <div class="tile">
+              <h4>Comparing Slices</h4>
+              <pre><code class="language-go">slices.Equal(a, b) // Go 1.18+</code></pre>
+              <div class="tile-explanation">
+                Use <code>slices.Equal</code> to compare two slices for equality (requires <code>import "slices"</code> in Go 1.18+).
+              </div>
+            </div>
+            <div class="tile">
+              <h4>Multidimensional Slices</h4>
+              <pre><code class="language-go">matrix := [][]int{{1,2,3},{4,5,6}}</code></pre>
+              <div class="tile-explanation">
+                Slices of slices can be used for 2D data structures.
+              </div>
+            </div>
+            <div class="tile tile-highlight">
+              <h4>What else should you know?</h4>
+              <ul>
+                <li><b>Zero value:</b> A nil slice behaves like an empty slice in most cases.</li>
+                <li><b>Appending multiple elements:</b> <code>append(nums, 1, 2, 3)</code></li>
+                <li><b>Removing elements:</b> Use <code>nums = append(nums[:i], nums[i+1:]...)</code> to remove the i-th element.</li>
+                <li><b>Best practice:</b> Avoid sharing slices between goroutines without synchronization.</li>
+                <li><b>Common mistake:</b> Slices are references—modifying one can affect others sharing the same array.</li>
+              </ul>
             </div>
           </div>
         </section>
@@ -155,25 +621,46 @@ func main() {
       </main>
     </div>
 
+    <script src="go-runner.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-go.min.js"></script>
     <script>
       // Add interactivity
       document.addEventListener("DOMContentLoaded", function () {
-        // Highlight code
         Prism.highlightAll();
-
         // Search functionality
         const searchInput = document.getElementById("searchInput");
         searchInput.addEventListener("input", function (e) {
           const searchTerm = e.target.value.toLowerCase();
           const sections = document.querySelectorAll(".topic-card");
-
           sections.forEach((section) => {
             const text = section.textContent.toLowerCase();
             section.style.display = text.includes(searchTerm)
               ? "block"
               : "none";
+          });
+        });
+        // Sidebar active link highlight on scroll
+        const sectionIds = [
+          "hello-world",
+          "simple-values",
+          "variables",
+          "constants",
+          "for-loops",
+          "if-else",
+          "switch",
+          "arrays",
+          "slices"
+        ];
+        const navLinks = document.querySelectorAll('.sidebar nav ul li a');
+        window.addEventListener('scroll', function() {
+          let fromTop = window.scrollY + 120;
+          sectionIds.forEach((id, idx) => {
+            const section = document.getElementById(id);
+            if (section && section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+              navLinks.forEach(link => link.classList.remove('active'));
+              navLinks[idx].classList.add('active');
+            }
           });
         });
       });
